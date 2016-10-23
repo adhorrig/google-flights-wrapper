@@ -1,0 +1,16 @@
+{
+  "request": {
+    "passengers": {
+      "adultCount":""
+    },
+    "maxPrice": "",
+    "solutions": "",
+  "slice": [
+        {
+          "origin": "",
+          "destination": "",
+          "date": ""
+        }
+      ]
+    }
+}
