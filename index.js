@@ -1,10 +1,9 @@
-modules.export{
-  var request = require('request');
-  var data = require('./data.json');
-  var key = '';
-  var endPoint = "https://www.googleapis.com/qpxExpress/v1/trips/search?key="+key;
-
+module.exports = {
   api: function(adultCount, maxPrice, solutions, origin, destination, date){
+    var request = require('request');
+    var data = require('./data.json');
+    var key = '';
+    var endPoint = "https://www.googleapis.com/qpxExpress/v1/trips/search?key="+key;
 
     data.request.passengers.adultCount = adultCount;
     data.request.maxPrice = maxPrice;
