@@ -1,4 +1,4 @@
-var qpx = modules.export{
+modules.export{
   var request = require('request');
   var data = require('./data.json');
   var key = '';
