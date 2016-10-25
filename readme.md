@@ -9,7 +9,7 @@ npm install google-flights-wrapper
 ## Usage
 
 ```
-var qpx = require('google-flights-wrapper');
+var qpx = require('google-flights-wrapper')(API_KEY_HERE);
 
 qpx.api("1", "EUR5000", "1", "DUB", "GDN", "2016-12-14", function(data){
   //data is API response
