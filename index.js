@@ -1,5 +1,5 @@
 module.exports = {
-  api: function(adultCount, maxPrice, solutions, origin, destination, date){
+  api: function(adultCount, maxPrice, solutions, origin, destination, date, fn){
     var request = require('request');
     var data = require('./data.json');
     var key = '';
@@ -31,13 +31,13 @@ module.exports = {
             jsonObject = {"airline": airline , "price": price};
             info.push(jsonObject);
           }
-          return info;
+          fn(info);
         } else {
           airline = body.trips.tripOption[0].slice[0].segment[0].flight.carrier
           price = body.trips.tripOption[0].saleTotal
           jsonObject = {"airline": airline, "price":price}
           info.push(jsonObject);
-          return info;
+          fn(info);
         }
       }
     });
