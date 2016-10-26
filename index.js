@@ -12,7 +12,6 @@ module.exports = function(apikey){
       data.request.slice[0].destination = destination;
       data.request.slice[0].date = date;
 
-
       request({method: "post",  url: endPoint,  body: data,  json: true}, function(err, resp, body){
 
         var info = [];
@@ -20,26 +19,14 @@ module.exports = function(apikey){
         var airline;
         var price;
 
-        if (body.error){
-          return console.error(body.error);
-        } else {
-          var price= body.trips.tripOption[0].saleTotal;
-          if(solutions >= 2){
-            for(i=0; i < body.trips.tripOption.length; i++){
-              airline = body.trips.tripOption[i].slice[0].segment[0].flight.carrier
-              price = body.trips.tripOption[i].saleTotal
-              jsonObject = {"airline": airline , "price": price};
-              info.push(jsonObject);
-            }
-            fn(info);
-          } else {
-            airline = body.trips.tripOption[0].slice[0].segment[0].flight.carrier
-            price = body.trips.tripOption[0].saleTotal
-            jsonObject = {"airline": airline, "price":price}
-            info.push(jsonObject);
-            fn(info);
-          }
+        if(body.error) return console.error(body.error);
+        for(i=0; i < body.trips.tripOption.length; i++){
+          airline = body.trips.tripOption[i].slice[0].segment[0].flight.carrier
+          price = body.trips.tripOption[i].saleTotal
+          jsonObject = {"airline": airline , "price": price};
+          info.push(jsonObject);
         }
+        fn(info);
       });
     }
   }
