@@ -1,9 +1,9 @@
-module.exports = function(apikey){
+module.exports = (apikey) => {
   return {
-    api: function(adultCount, maxPrice, solutions, origin, destination, date, fn){
-      var request = require('request');
-      var data = require('./data.json');
-      var endPoint = "https://www.googleapis.com/qpxExpress/v1/trips/search?key="+apikey;
+    api: (adultCount, maxPrice, solutions, origin, destination, date, fn) => {
+      const request = require('request');
+      const endPoint = "https://www.googleapis.com/qpxExpress/v1/trips/search?key="+apikey;
+      let data = require('../data.json');
 
       data.request.passengers.adultCount = adultCount;
       data.request.maxPrice = maxPrice;
@@ -12,12 +12,12 @@ module.exports = function(apikey){
       data.request.slice[0].destination = destination;
       data.request.slice[0].date = date;
 
-      request({method: "post",  url: endPoint,  body: data,  json: true}, function(err, resp, body){
+      request({method: "post",  url: endPoint,  body: data,  json: true}, (err, resp, body) => {
 
-        var info = [];
-        var jsonObject = {};
-        var airline;
-        var price;
+        let info = [];
+        let jsonObject = {};
+        const airline;
+        const price;
 
         if(body.error) return console.error(body.error);
         for(i=0; i < body.trips.tripOption.length; i++){
